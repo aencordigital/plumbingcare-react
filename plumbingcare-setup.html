@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PlumbingCare - Setup Guide</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        pre {
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-gradient-to-br from-blue-50 to-gray-100 py-8 px-4">
+    <div class="max-w-4xl mx-auto bg-white rounded-xl shadow-md p-6">
+        <h1 class="text-3xl font-bold text-gray-900 mb-2 text-center">
+            PlumbingCare Setup Guide
+        </h1>
+        <p class="text-gray-600 text-center mb-8">
+            Follow these steps to configure Firebase and EmailJS for your app
+        </p>
+
+        <!-- Tabs -->
+        <div class="flex border-b border-gray-200 mb-6 overflow-x-auto">
+            <button class="px-4 py-2 font-medium tab-button border-b-2 border-blue-500 text-blue-600" data-tab="firebase">
+                Firebase Setup
+            </button>
+            <button class="px-4 py-2 font-medium tab-button text-gray-500 hover:text-gray-700" data-tab="emailjs">
+                EmailJS Setup
+            </button>
+            <button class="px-4 py-2 font-medium tab-button text-gray-500 hover:text-gray-700" data-tab="env">
+                Environment Variables
+            </button>
+            <button class="px-4 py-2 font-medium tab-button text-gray-500 hover:text-gray-700" data-tab="test">
+                Testing
+            </button>
+            <button class="px-4 py-2 font-medium tab-button text-gray-500 hover:text-gray-700" data-tab="code">
+                App Code
+            </button>
+        </div>
+
+        <!-- Firebase Setup Content -->
+        <div id="firebase" class="tab-content active space-y-6">
+            <h2 class="text-2xl font-bold text-gray-900">Firebase Setup</h2>
+            
+            <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                <h3 class="font-semibold text-blue-800 mb-2">Step 1: Create a Firebase Project</h3>
+                <ol class="list-decimal pl-5 space-y-2">
+                    <li>Go to the <a href="https://console.firebase.google.com/" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">Firebase Console</a></li>
+                    <li>Click "Create a project" or "Add project"</li>
+                    <li>Enter a project name (e.g., "PlumbingCare")</li>
+                    <li>Enable Google Analytics if desired (optional)</li>
+                    <li>Click "Create project"</li>
+                </ol>
+            </div>
+
+            <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                <h3 class="font-semibold text-blue-800 mb-2">Step 2: Enable Authentication</h3>
+                <ol class="list-decimal pl-5 space-y-2">
+                    <li>In your Firebase project, go to the "Authentication" section</li>
+                    <li>Click "Get started"</li>
+                    <li>Go to the "Sign-in method" tab</li>
+                    <li>Enable "Email/Password" authentication</li>
+                    <li>Click "Save"</li>
+                </ol>
+            </div>
+
+            <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                <h3 class="font-semibold text-blue-800 mb-2">Step 3: Set Up Firestore Database</h3>
+                <ol class="list-decimal pl-5 space-y-2">
+                    <li>Go to the "Firestore Database" section</li>
+                    <li>Click "Create database"</li>
+                    <li>Start in test mode (you can change rules later)</li>
+                    <li>Select a location for your database</li>
+                    <li>Click "Done"</li>
+                </ol>
+            </div>
+
+            <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                <h3 class="font-semibold text-blue-800 mb-2">Step 4: Get Your Firebase Config</h3>
+                <ol class="list-decimal pl-5 space-y-2">
+                    <li>Go to Project Settings (gear icon)</li>
+                    <li>Scroll down to "Your apps"</li>
+                    <li>Click the web icon to add a web app</li>
+                    <li>Register your app with a name (e.g., "PlumbingCare Web")</li>
+                    <li>Copy the configuration object</li>
+                </ol>
+                <div class="mt-4 bg-gray-800 text-green-400 p-4 rounded-lg overflow-x-auto">
+                    <pre>const firebaseConfig = {
+  apiKey: "your-api-key",
+  authDomain: "your-project.firebaseapp.com",
+  projectId: "your-project-id",
+  storageBucket: "your-project.appspot.com",
+  messagingSenderId: "123456789",
+  appId: "your-app-id"
+};</pre>
+                </div>
+            </div>
+        </div>
+
+        <!-- EmailJS Setup Content -->
+        <div id="emailjs" class="tab-content space-y-6">
+            <h2 class="text-2xl font-bold text-gray-900">EmailJS Setup</h2>
+            
+            <div class="bg-green-50 border border-green-200 rounded-lg p-4">
+                <h3 class="font-semibold text-green-800 mb-2">Step 1: Create an EmailJS Account</h3>
+                <ol class="list-decimal pl-5 space-y-2">
+                    <li>Go to <a href="https://www.emailjs.com/" target="_blank" rel="noopener noreferrer" class="text-green-600 hover:underline">EmailJS.com</a></li>
+                    <li>Click "Sign Up" and create a free account</li>
+                    <li>Confirm your email address</li>
+                </ol>
+            </div>
+
+            <div class="bg-green-50 border border-green-200 rounded-lg p-4">
+                <h3 class="font-semibold text-green-800 mb-2">Step 2: Add an Email Service</h3>
+                <ol class="list-decimal pl-5 space-y-2">
+                    <li>In your EmailJS dashboard, go to "Email Services"</li>
+                    <li>Click "Add New Service"</li>
+                    <li>Select your email provider (Gmail is recommended for testing)</li>
+                    <li>Follow the instructions to connect your email account</li>
+                    <li>Note down the Service ID</li>
+                </ol>
+            </div>
+
+            <div class="bg-green-50 border border-green-200 rounded-lg p-4">
+                <h3 class="font-semibold text-green-800 mb-2">Step 3: Create an Email Template</h3>
+                <ol class="list-decimal pl-5 space-y-2">
+                    <li>Go to "Email Templates"</li>
+                    <li>Click "Create New Template"</li>
+                    <li>Design your service confirmation email template</li>
+                    <li>Use variables like {{to_name}}, {{service}}, {{notes}} in your template</li>
+                    <li>Save the template and note down the Template ID</li>
+                </ol>
+            </div>
+
+            <div class="bg-green-50 border border-green-200 rounded-lg p-4">
+                <h3 class="font-semibold text-green-800 mb-2">Step 4: Get Your EmailJS User ID</h3>
+                <ol class="list-decimal pl-5 space-y-2">
+                    <li>Go to your Account page</li>
+                    <li>Find your User ID in the dashboard</li>
+                    <li>Copy it for use in your environment variables</li>
+                </ol>
+            </div>
+        </div>
+
+        <!-- Environment Variables Content -->
+        <div id="env" class="tab-content space-y-6">
+            <h2 class="text-2xl font-bold text-gray-900">Environment Variables Setup</h2>
+            
+            <div class="bg-purple-50 border border-purple-200 rounded-lg p-4">
+                <h3 class="font-semibold text-purple-800 mb-2">Create Environment Files</h3>
+                <p class="mb-4">Create a <code>.env</code> file in your project root with the following variables:</p>
+                <div class="bg-gray-800 text-green-400 p-4 rounded-lg overflow-x-auto">
+                    <pre>REACT_APP_FIREBASE_API_KEY=your-firebase-api-key
+REACT_APP_FIREBASE_AUTH_DOMAIN=your-project.firebaseapp.com
+REACT_APP_FIREBASE_PROJECT_ID=your-project-id
+REACT_APP_FIREBASE_STORAGE_BUCKET=your-project.appspot.com
+REACT_APP_FIREBASE_MESSAGING_SENDER_ID=123456789
+REACT_APP_FIREBASE_APP_ID=your-app-id
+REACT_APP_EMAILJS_SERVICE_ID=your-emailjs-service-id
+REACT_APP_EMAILJS_TEMPLATE_ID=your-emailjs-template-id
+REACT_APP_EMAILJS_USER_ID=your-emailjs-user-id</pre>
+                </div>
+                <p class="mt-4 text-sm text-gray-600">
+                    Note: For Create React App, environment variables must be prefixed with REACT_APP_
+                </p>
+            </div>
+
+            <div class="bg-purple-50 border border-purple-200 rounded-lg p-4">
+                <h3 class="font-semibold text-purple-800 mb-2">Using Environment Variables in Code</h3>
+                <p class="mb-4">Your PlumbingCare app should access these variables like this:</p>
+                <div class="bg-gray-800 text-green-400 p-4 rounded-lg overflow-x-auto">
+                    <pre>// Firebase configuration
+const firebaseConfig = {
+  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+  authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
+  storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.REACT_APP_FIREBASE_APP_ID
+};
+
+// EmailJS configuration
+const EMAILJS_SERVICE = process.env.REACT_APP_EMAILJS_SERVICE_ID;
+const EMAILJS_TEMPLATE = process.env.REACT_APP_EMAILJS_TEMPLATE_ID;
+const EMAILJS_USER = process.env.REACT_APP_EMAILJS_USER_ID;</pre>
+                </div>
+            </div>
+
+            <div class="bg-purple-50 border border-purple-200 rounded-lg p-4">
+                <h3 class="font-semibold text-purple-800 mb-2">Deployment Considerations</h3>
+                <ul class="list-disc pl-5 space-y-2">
+                    <li>For deployment platforms like Netlify or Vercel, you'll need to set these environment variables in your project settings</li>
+                    <li>Never commit your .env file to version control (add it to .gitignore)</li>
+                    <li>For production, use secure environment variable management provided by your hosting platform</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Testing Content -->
+        <div id="test" class="tab-content space-y-6">
+            <h2 class="text-2xl font-bold text-gray-900">Testing Your Setup</h2>
+            
+            <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+                <h3 class="font-semibold text-yellow-800 mb-2">Testing Firebase Authentication</h3>
+                <ol class="list-decimal pl-5 space-y-2">
+                    <li>Start your React application</li>
+                    <li>Try to create a new user account</li>
+                    <li>Check if the user appears in Firebase Authentication console</li>
+                    <li>Test login functionality with the created account</li>
+                    <li>Verify that protected routes work correctly</li>
+                </ol>
+            </div>
+
+            <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+                <h3 class="font-semibold text-yellow-800 mb-2">Testing Firestore Database</h3>
+                <ol class="list-decimal pl-5 space-y-2">
+                    <li>Create a new service request in your app</li>
+                    <li>Check if the data appears in your Firestore Database console</li>
+                    <li>Test updating user profiles and subscriptions</li>
+                    <li>Verify that admin functions can read/write to the database</li>
+                </ol>
+            </div>
+
+            <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+                <h3 class="font-semibold text-yellow-800 mb-2">Testing EmailJS Integration</h3>
+                <ol class="list-decimal pl-5 space-y-2">
+                    <li>Submit a service request in your app</li>
+                    <li>Check if you receive an email confirmation</li>
+                    <li>Verify that the email template variables are populated correctly</li>
+                    <li>Test with different types of service requests</li>
+                </ol>
+            </div>
+
+            <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+                <h3 class="font-semibold text-yellow-800 mb-2">Troubleshooting Common Issues</h3>
+                <ul class="list-disc pl-5 space-y-2">
+                    <li>
+                        <strong>Firebase permissions errors:</strong> Check your Firestore security rules. 
+                        You may need to adjust them for testing:
+                        <div class="bg-gray-800 text-green-400 p-2 rounded-lg mt-2 overflow-x-auto">
+                            <pre>// Temporary rules for testing - NOT for production
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /{document=**} {
+      allow read, write: if true;
+    }
+  }
+}</pre>
+                        </div>
+                    </li>
+                    <li>
+                        <strong>Email not sending:</strong> Check your EmailJS template variables match those in your code
+                    </li>
+                    <li>
+                        <strong>Authentication errors:</strong> Verify that Email/Password auth is enabled in Firebase
+                    </li>
+                    <li>
+                        <strong>Environment variables not loading:</strong> Restart your development server after adding environment variables
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- App Code Content -->
+        <div id="code" class="tab-content space-y-6">
+            <h2 class="text-2xl font-bold text-gray-900">Application Code</h2>
+            
+            <div class="bg-gray-50 border border-gray-200 rounded-lg p-4">
+                <h3 class="font-semibold text-gray-800 mb-2">Where to Place the Code</h3>
+                <p class="mb-4">You have several options for implementing the PlumbingCare app:</p>
+                
+                <div class="mb-6">
+                    <h4 class="font-semibold text-blue-700 mb-2">Option 1: Create a New React App</h4>
+                    <ol class="list-decimal pl-5 space-y-2">
+                        <li>Create a new React application:
+                            <div class="bg-gray-800 text-green-400 p-2 rounded-lg mt-2 overflow-x-auto">
+                                <pre>npx create-react-app plumbingcare-app
+cd plumbingcare-app</pre>
+                            </div>
+                        </li>
+                        <li>Install required dependencies:
+                            <div class="bg-gray-800 text-green-400 p-2 rounded-lg mt-2 overflow-x-auto">
+                                <pre>npm install emailjs-com firebase</pre>
+                            </div>
+                        </li>
+                        <li>Replace the contents of <code>src/App.js</code> with the PlumbingCare app code</li>
+                        <li>Create a <code>.env</code> file with your configuration</li>
+                        <li>Start the development server:
+                            <div class="bg-gray-800 text-green-400 p-2 rounded-lg mt-2 overflow-x-auto">
+                                <pre>npm start</pre>
+                            </div>
+                        </li>
+                    </ol>
+                </div>
+                
+                <div class="mb-6">
+                    <h4 class="font-semibold text-blue-700 mb-2">Option 2: Use an Online Code Editor</h4>
+                    <p class="mb-2">You can use online platforms like:</p>
+                    <ul class="list-disc pl-5">
+                        <li>CodeSandbox.io</li>
+                        <li>StackBlitz.com</li>
+                        <li>Replit.com</li>
+                    </ul>
+                    <p class="mt-2">Simply create a new React project and replace the main component with the PlumbingCare code.</p>
+                </div>
+                
+                <div>
+                    <h4 class="font-semibold text-blue-700 mb-2">Option 3: Add to Existing Project</h4>
+                    <p>If you have an existing React project, you can:</p>
+                    <ol class="list-decimal pl-5 space-y-2">
+                        <li>Install the required dependencies</li>
+                        <li>Create a new component with the PlumbingCare code</li>
+                        <li>Add the component to your app</li>
+                        <li>Set up environment variables</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-8 p-4 bg-blue-50 border border-blue-200 rounded-lg">
+            <h3 class="font-semibold text-blue-800 mb-2">Next Steps</h3>
+            <ol class="list-decimal pl-5 space-y-2">
+                <li>Set up your Firebase project following the steps above</li>
+                <li>Configure EmailJS with your email service</li>
+                <li>Add your environment variables to the PlumbingCare app</li>
+                <li>Test all functionality to ensure everything works</li>
+                <li>Deploy your application to a hosting service</li>
+            </ol>
+        </div>
+
+        <div class="mt-8 text-center">
+            <a
+                href="#"
+                class="inline-flex items-center px-4 py-2 bg-gray-800 text-white rounded-lg hover:bg-gray-700 transition"
+            >
+                <i class="fab fa-github mr-2"></i>
+                Download Complete App Code
+            </a>
+        </div>
+    </div>
+
+    <script>
+        // Tab functionality
+        document.querySelectorAll('.tab-button').forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove active class from all buttons and content
+                document.querySelectorAll('.tab-button').forEach(btn => {
+                    btn.classList.remove('border-blue-500', 'text-blue-600');
+                    btn.classList.add('text-gray-500');
+                });
+                document.querySelectorAll('.tab-content').forEach(content => {
+                    content.classList.remove('active');
+                });
+                
+                // Add active class to clicked button and corresponding content
+                button.classList.add('border-blue-500', 'text-blue-600');
+                button.classList.remove('text-gray-500');
+                document.getElementById(button.dataset.tab).classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>

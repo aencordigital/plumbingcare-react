@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EmailJS Setup Guide - PlumbingCare</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .step-card {
+            transition: all 0.3s ease;
+        }
+        .step-card:hover {
+            transform: translateY(-5px);
+        }
+        .copy-btn {
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .copy-btn:hover {
+            background-color: #E5E7EB;
+        }
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-gradient-to-br from-blue-50 to-gray-100 py-8 px-4">
+    <div class="max-w-4xl mx-auto bg-white rounded-xl shadow-md p-6">
+        <div class="text-center mb-8">
+            <div class="w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <i class="fas fa-envelope text-4xl text-blue-600"></i>
+            </div>
+            <h1 class="text-3xl font-bold text-gray-900 mb-2">
+                EmailJS Setup Guide
+            </h1>
+            <p class="text-gray-600">
+                Follow these steps to configure EmailJS for your PlumbingCare app
+            </p>
+        </div>
+
+        <div class="flex border-b border-gray-200 mb-6 overflow-x-auto">
+            <button class="px-4 py-2 font-medium tab-button border-b-2 border-blue-500 text-blue-600" data-tab="account">
+                Account Setup
+            </button>
+            <button class="px-4 py-2 font-medium tab-button text-gray-500 hover:text-gray-700" data-tab="service">
+                Email Service
+            </button>
+            <button class="px-4 py-2 font-medium tab-button text-gray-500 hover:text-gray-700" data-tab="template">
+                Email Template
+            </button>
+            <button class="px-4 py-2 font-medium tab-button text-gray-500 hover:text-gray-700" data-tab="integration">
+                Integration
+            </button>
+        </div>
+
+        <!-- Account Setup Content -->
+        <div id="account" class="tab-content active space-y-6">
+            <h2 class="text-2xl font-bold text-gray-900">Create Your EmailJS Account</h2>
+            
+            <div class="step-card bg-blue-50 border border-blue-200 rounded-lg p-6">
+                <div class="flex items-center mb-4">
+                    <div class="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold mr-3">1</div>
+                    <h3 class="font-semibold text-blue-800">Sign Up for EmailJS</h3>
+                </div>
+                <ol class="list-decimal pl-5 space-y-2">
+                    <li>Go to the <a href="https://www.emailjs.com/" target="_blank" class="text-blue-600 hover:underline font-medium">EmailJS website</a></li>
+                    <li>Click on "Sign Up" in the top right corner</li>
+                    <li>Choose to sign up with Google, GitHub, or your email address</li>
+                    <li>Complete the registration process</li>
+                    <li>Verify your email address if required</li>
+                </ol>
+                <div class="mt-4 p-4 bg-white rounded-lg border border-blue-100">
+                    <p class="text-sm text-blue-700"><i class="fas fa-lightbulb mr-2"></i>EmailJS offers a free plan that includes 200 monthly emails, which is perfect for testing and small applications.</p>
+                </div>
+            </div>
+
+            <div class="step-card bg-blue-50 border border-blue-200 rounded-lg p-6">
+                <div class="flex items-center mb-4">
+                    <div class="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold mr-3">2</div>
+                    <h3 class="font-semibold text-blue-800">Access Your Dashboard</h3>
+                </div>
+                <p class="mb-4">After signing up, you'll be taken to your EmailJS dashboard. This is where you'll manage your email services and templates.</p>
+                <div class="bg-gray-800 text-green-400 p-4 rounded-lg overflow-x-auto">
+                    <pre>Dashboard → Email Services → Email Templates → Account</pre>
+                </div>
+                <p class="mt-4 text-sm text-gray-600">Familiarize yourself with the dashboard navigation, as you'll need to access these sections in the following steps.</p>
+            </div>
+        </div>
+
+        <!-- Email Service Content -->
+        <div id="service" class="tab-content space-y-6">
+            <h2 class="text-2xl font-bold text-gray-900">Set Up Your Email Service</h2>
+            
+            <div class="step-card bg-green-50 border border-green-200 rounded-lg p-6">
+                <div class="flex items-center mb-4">
+                    <div class="w-8 h-8 bg-green-600 rounded-full flex items-center justify-center text-white font-bold mr-3">1</div>
+                    <h3 class="font-semibold text-green-800">Add an Email Service</h3>
+                </div>
+                <ol class="list-decimal pl-5 space-y-2">
+                    <li>In your EmailJS dashboard, click on "Email Services"</li>
+                    <li>Click the "Add New Service" button</li>
+                    <li>Select your email service provider</li>
+                </ol>
+                <div class="mt-4 p-4 bg-white rounded-lg border border-green-100">
+                    <p class="text-sm text-green-700"><i class="fas fa-info-circle mr-2"></i>For testing, Gmail is recommended. For production, consider using a transactional email service like SendGrid or Mailjet.</p>
+                </div>
+            </div>
+
+            <div class="step-card bg-green-50 border border-green-200 rounded-lg p-6">
+                <div class="flex items-center mb-4">
+                    <div class="w-8 h-8 bg-green-600 rounded-full flex items-center justify-center text-white font-bold mr-3">2</div>
+                    <h3 class="font-semibold text-green-800">Connect Gmail (Recommended for Testing)</h3>
+                </div>
+                <ol class="list-decimal pl-5 space-y-2">
+                    <li>Select "Gmail" as your service provider</li>
+                    <li>Click "Connect Account"</li>
+                    <li>Sign in to your Gmail account when prompted</li>
+                    <li>Grant the necessary permissions to EmailJS</li>
+                </ol>
+                <div class="mt-4 bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+                    <p class="text-sm text-yellow-700"><i class="fas fa-exclamation-triangle mr-2"></i>If you have 2-factor authentication enabled on Gmail, you may need to create an App Password for EmailJS.</p>
+                </div>
+            </div>
+
+            <div class="step-card bg-green-50 border border-green-200 rounded-lg p-6">
+                <div class="flex items-center mb-4">
+                    <div class="w-8 h-8 bg-green-600 rounded-full flex items-center justify-center text-white font-bold mr-3">3</div>
+                    <h3 class="font-semibold text-green-800">Note Your Service ID</h3>
+                </div>
+                <p class="mb-4">After connecting your email service, you'll see a Service ID. This is a unique identifier for your email service.</p>
+                <div class="bg-gray-800 text-green-400 p-4 rounded-lg overflow-x-auto flex justify-between items-center">
+                    <pre class="flex-1">Service ID: service_abc123xyz</pre>
+                    <button class="copy-btn bg-gray-700 text-white px-3 py-1 rounded text-sm ml-2">Copy</button>
+                </div>
+                <p class="mt-4 text-sm text-gray-600">You'll need this Service ID for your environment variables later.</p>
+            </div>
+        </div>
+
+        <!-- Email Template Content -->
+        <div id="template" class="tab-content space-y-6">
+            <h2 class="text-2xl font-bold text-gray-900">Create Email Templates</h2>
+            
+            <div class="step-card bg-purple-50 border border-purple-200 rounded-lg p-6">
+                <div class="flex items-center mb-4">
+                    <div class="w-8 h-8 bg-purple-600 rounded-full flex items-center justify-center text-white font-bold mr-3">1</div>
+                    <h3 class="font-semibold text-purple-800">Create a New Template</h3>
+                </div>
+                <ol class="list-decimal pl-5 space-y-2">
+                    <li>In your EmailJS dashboard, click on "Email Templates"</li>
+                    <li>Click the "Create New Template" button</li>
+                    <li>Give your template a name (e.g., "Service Confirmation")</li>
+                </ol>
+            </div>
+
+            <div class="step-card bg-purple-50 border border-purple-200 rounded-lg p-6">
+                <div class="flex items-center mb-4">
+                    <div class="w-8 h-8 bg-purple-600 rounded-full flex items-center justify-center text-white font-bold mr-3">2</div>
+                    <h3 class="font-semibold text-purple-800">Design Your Template</h3>
+                </div>
+                <p class="mb-4">Use the template editor to design your email. For the PlumbingCare app, you'll want to include these dynamic variables:</p>
+                <div class="bg-gray-800 text-green-400 p-4 rounded-lg overflow-x-auto">
+                    <pre>{{to_name}}          // Customer's name
+{{service}}         // Requested service
+{{notes}}           // Additional notes
+{{emergency}}       // Emergency flag
+{{preferred_date}}  // Preferred service date</pre>
+                </div>
+                <p class="mt-4 text-sm text-gray-600">These variables will be automatically replaced with actual values when the email is sent.</p>
+            </div>
+
+            <div class="step-card bg-purple-50 border border-purple-200 rounded-lg p-6">
+                <div class="flex items-center mb-4">
+                    <div class="w-8 h-8 bg-purple-600 rounded-full flex items-center justify-center text-white font-bold mr-3">3</div>
+                    <h3 class="font-semibold text-purple-800">Note Your Template ID</h3>
+                </div>
+                <p class="mb-4">After saving your template, you'll see a Template ID. This is a unique identifier for your email template.</p>
+                <div class="bg-gray-800 text-green-400 p-4 rounded-lg overflow-x-auto flex justify-between items-center">
+                    <pre class="flex-1">Template ID: template_abc123xyz</pre>
+                    <button class="copy-btn bg-gray-700 text-white px-3 py-1 rounded text-sm ml-2">Copy</button>
+                </div>
+                <p class="mt-4 text-sm text-gray-600">You'll need this Template ID for your environment variables.</p>
+            </div>
+        </div>
+
+        <!-- Integration Content -->
+        <div id="integration" class="tab-content space-y-6">
+            <h2 class="text-2xl font-bold text-gray-900">Integrate EmailJS with Your App</h2>
+            
+            <div class="step-card bg-red-50 border border-red-200 rounded-lg p-6">
+                <div class="flex items-center mb-4">
+                    <div class="w-8 h-8 bg-red-600 rounded-full flex items-center justify-center text-white font-bold mr-3">1</div>
+                    <h3 class="font-semibold text-red-800">Get Your User ID</h3>
+                </div>
+                <ol class="list-decimal pl-5 space-y-2">
+                    <li>In your EmailJS dashboard, click on "Account"</li>
+                    <li>Find your User ID in the account info section</li>
+                    <li>Copy your User ID</li>
+                </ol>
+                <div class="bg-gray-800 text-green-400 p-4 rounded-lg overflow-x-auto flex justify-between items-center mt-4">
+                    <pre class="flex-1">User ID: user_abc123xyz</pre>
+                    <button class="copy-btn bg-gray-700 text-white px-3 py-1 rounded text-sm ml-2">Copy</button>
+                </div>
+            </div>
+
+            <div class="step-card bg-red-50 border border-red-200 rounded-lg p-6">
+                <div class="flex items-center mb-4">
+                    <div class="w-8 h-8 bg-red-600 rounded-full flex items-center justify-center text-white font-bold mr-3">2</div>
+                    <h3 class="font-semibold text-red-800">Set Up Environment Variables</h3>
+                </div>
+                <p class="mb-4">Create a <code>.env</code> file in your React project root and add these variables:</p>
+                <div class="bg-gray-800 text-green-400 p-4 rounded-lg overflow-x-auto">
+                    <pre>REACT_APP_EMAILJS_SERVICE_ID=your_service_id_here
+REACT_APP_EMAILJS_TEMPLATE_ID=your_template_id_here
+REACT_APP_EMAILJS_USER_ID=your_user_id_here</pre>
+                </div>
+                <p class="mt-4 text-sm text-gray-600">Replace the values with your actual Service ID, Template ID, and User ID from EmailJS.</p>
+            </div>
+
+            <div class="step-card bg-red-50 border border-red-200 rounded-lg p-6">
+                <div class="flex items-center mb-4">
+                    <div class="w-8 h-8 bg-red-600 rounded-full flex items-center justify-center text-white font-bold mr-3">3</div>
+                    <h3 class="font-semibold text-red-800">Test Your Configuration</h3>
+                </div>
+                <p class="mb-4">Send a test email to verify your setup is working correctly:</p>
+                <div class="bg-gray-800 text-green-400 p-4 rounded-lg overflow-x-auto">
+                    <pre>// In your service request function
+emailjs.send(
+  process.env.REACT_APP_EMAILJS_SERVICE_ID,
+  process.env.REACT_APP_EMAILJS_TEMPLATE_ID,
+  {
+    to_name: customerName,
+    service: serviceType,
+    notes: serviceNotes,
+    emergency: isEmergency ? 'Yes' : 'No',
+    preferred_date: preferredDate
+  },
+  process.env.REACT_APP_EMAILJS_USER_ID
+)
+.then(() => {
+  console.log('Email sent successfully!');
+})
+.catch(error => {
+  console.error('Email sending failed:', error);
+});</pre>
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-8 p-6 bg-blue-50 border border-blue-200 rounded-lg">
+            <h3 class="font-semibold text-blue-800 mb-4">
+                <i class="fas fa-check-circle mr-2"></i>
+                Setup Complete!
+            </h3>
+            <p class="text-blue-700">You've successfully set up EmailJS for your PlumbingCare application. Your app can now send automated email notifications to customers when they request services.</p>
+            
+            <div class="mt-4 flex flex-col sm:flex-row gap-4">
+                <a href="#" class="px-4 py-2 bg-blue-600 text-white rounded-lg text-center font-semibold hover:bg-blue-700 transition">
+                    <i class="fas fa-envelope mr-2"></i>
+                    Test Email Setup
+                </a>
+                <a href="#" class="px-4 py-2 bg-gray-100 text-gray-800 rounded-lg text-center font-semibold hover:bg-gray-200 transition">
+                    <i class="fas fa-arrow-left mr-2"></i>
+                    Back to PlumbingCare App
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Tab functionality
+        document.querySelectorAll('.tab-button').forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove active class from all buttons and content
+                document.querySelectorAll('.tab-button').forEach(btn => {
+                    btn.classList.remove('border-blue-500', 'text-blue-600');
+                    btn.classList.add('text-gray-500');
+                });
+                document.querySelectorAll('.tab-content').forEach(content => {
+                    content.classList.remove('active');
+                });
+                
+                // Add active class to clicked button and corresponding content
+                button.classList.add('border-blue-500', 'text-blue-600');
+                button.classList.remove('text-gray-500');
+                document.getElementById(button.dataset.tab).classList.add('active');
+            });
+        });
+
+        // Copy button functionality
+        document.querySelectorAll('.copy-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                const textToCopy = button.previousElementSibling.textContent;
+                navigator.clipboard.writeText(textToCopy).then(() => {
+                    const originalText = button.textContent;
+                    button.textContent = 'Copied!';
+                    setTimeout(() => {
+                        button.textContent = originalText;
+                    }, 2000);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
